@@ -1,5 +1,5 @@
 {
-  "name": "volto-contents-next",
+  "name": "@plone-collective/volto-contents-next",
   "version": "0.1.0",
   "description": "volto-contents-next: Volto add-on",
   "main": "src/index.js",
@@ -8,7 +8,8 @@
     "volto-addon",
     "volto",
     "plone",
-    "react"
+    "react",
+    "contents"
   ],
   "publishConfig": {
     "access": "public"
@@ -22,8 +23,9 @@
     "release-rc": "release-it --preRelease=rc"
   },
   "devDependencies": {
-    "@plone/scripts": "^3.3.2",
     "@babel/eslint-parser": "7.22.15",
+    "@plone/scripts": "^3.3.2",
+    "@release-it/conventional-changelog": "8.0.1",
     "eslint": "8.49.0",
     "eslint-config-prettier": "9.0.0",
     "eslint-config-react-app": "7.0.1",
@@ -44,5 +46,10 @@
   },
   "peerDependencies": {
     "@plone/volto": "^17.0.0"
+  },
+  "dependencies": {
+    "@plone/components": "alpha",
+    "@plone/types": "alpha",
+    "react-aria-components": "*"
   }
 }

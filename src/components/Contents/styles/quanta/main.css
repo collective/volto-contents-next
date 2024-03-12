@@ -1,0 +1,23 @@
+@import './colors.css';
+
+/* Components */
+@import './TextField.css';
+@import './Select.css';
+@import './Table.css';
+@import './Popover.css';
+
+/* Views */
+@import './Contents.css';
+
+.view-contentsview .skiplinks,
+.view-contentsview .it-header-wrapper,
+.view-contentsview #briciole,
+.view-contentsview .gdpr-privacy-show-banner {
+  display: none;
+}
+
+.view-contentsview .contents-pagination {
+  max-width: 90rem;
+  margin: 0 auto 6rem;
+  padding: 0 2rem;
+}
