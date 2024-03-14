@@ -1,5 +1,12 @@
 
 
+## [0.2.0](https://github.com/collective/volto-contents-next/compare/v0.1.1...v0.2.0) (2024-03-14)
+
+
+### Features
+
+* added index selection ([0a649c1](https://github.com/collective/volto-contents-next/commit/0a649c17d178dd665d762deb9966a211a289ed0f))
+
 ## 0.1.1 (2024-03-12)
 
 
