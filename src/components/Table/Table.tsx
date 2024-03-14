@@ -13,7 +13,7 @@ import { Row } from './Row';
 
 interface ColumnType {
   id: string;
-  name: string;
+  name: ReactNode;
   isRowHeader?: boolean;
   // TODO support width constraints for resizable columns
 }

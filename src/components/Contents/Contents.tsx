@@ -6,6 +6,7 @@ import {
   TooltipTrigger,
   useDragAndDrop,
   type Selection,
+  DialogTrigger,
 } from 'react-aria-components';
 import { useIntl } from 'react-intl';
 import {
@@ -15,6 +16,7 @@ import {
   Container,
   CopyIcon,
   CutIcon,
+  MoreoptionsIcon,
   PasteIcon,
   PropertiesIcon,
   QuantaTextField,
@@ -27,8 +29,9 @@ import {
 import { Button } from '../Button';
 import { Table } from '../Table/Table';
 import { ContentsCell } from './ContentsCell';
+import { TableIndexesPopover } from './TableIndexesPopover';
 // import { AddContentPopover } from './AddContentPopover';
-import { indexes, defaultIndexes } from '../../indexes';
+// import { indexes, defaultIndexes } from '../../indexes';
 import type { ArrayElement, Brain } from '../../types';
 
 interface ContentsProps {
@@ -43,6 +46,19 @@ interface ContentsProps {
   items: Brain[];
   selected: Selection;
   setSelected: (value: Selection) => void;
+  indexes: {
+    order: (keyof Brain)[];
+    values: {
+      [index: string]: {
+        type: string;
+        label: string;
+        selected: boolean;
+        sort_on?: string;
+      };
+    };
+    selectedCount: number;
+  };
+  onSelectIndex: (index: string) => void;
   upload: () => Promise<void>;
   rename: () => Promise<void>;
   workflow: () => Promise<void>;
@@ -76,6 +92,8 @@ export function Contents({
   items,
   selected,
   setSelected,
+  indexes,
+  onSelectIndex,
   upload,
   rename,
   workflow,
@@ -108,13 +126,31 @@ export function Contents({
       name: intl.formatMessage({ id: 'Title' }),
       isRowHeader: true,
     },
-    ...defaultIndexes.map((index) => ({
-      id: index,
-      name: intl.formatMessage({ id: indexes[index].label }),
-    })),
+    ...indexes.order
+      .filter((index) => indexes.values[index].selected)
+      .map((index) => ({
+        id: index,
+        name: intl.formatMessage({ id: indexes.values[index].label }),
+      })),
     {
       id: '_actions',
-      name: intl.formatMessage({ id: 'Actions' }),
+      // name: intl.formatMessage({ id: 'Actions' }),
+      name: (
+        <DialogTrigger>
+          <TooltipTrigger>
+            <Button className="react-aria-Button actions-cell-header">
+              <MoreoptionsIcon />
+            </Button>
+            <Tooltip className="react-aria-Tooltip tooltip" placement="bottom">
+              {intl.formatMessage({ id: 'Actions' })}
+            </Tooltip>
+          </TooltipTrigger>
+          <TableIndexesPopover
+            indexes={indexes}
+            onSelectIndex={onSelectIndex}
+          />
+        </DialogTrigger>
+      ),
     },
   ] as const;
 
@@ -127,6 +163,7 @@ export function Contents({
             key={column.id}
             item={item}
             column={column.id}
+            indexes={indexes}
             onMoveToBottom={() => moveToBottom(itemIndex)}
             onMoveToTop={() => moveToTop(itemIndex)}
             onCut={() => cut(item['@id'])}
@@ -181,7 +218,7 @@ export function Contents({
       narrow={false}
     >
       {/* TODO better loader */}
-      {loading && <p>Loading...</p>}
+      {/* {loading && <p>Loading...</p>} */}
       {/* TODO helmet setting title here... or should we do it at a higher level? */}
       <article id="content">
         <section className="topbar">

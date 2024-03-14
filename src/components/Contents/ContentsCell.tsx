@@ -1,16 +1,25 @@
 import React, { ComponentProps, useRef, useState } from 'react';
-import { DialogTrigger } from 'react-aria-components';
 import { useIntl } from 'react-intl';
 import { FormattedDate } from '@plone/volto/components';
-import { Brain } from '../../helpers/types';
+import { Brain } from '../../types';
 import { Link, MoreoptionsIcon, PageIcon } from '@plone/components';
-import { indexes } from '../../helpers/indexes';
 import { Button } from '../Button';
 import { ItemActionsPopover } from './ItemActionsPopover';
 
 interface Props {
   item: Brain;
-  column: keyof typeof indexes | 'title' | '_actions';
+  column: keyof Brain | '_actions';
+  indexes: {
+    order: string[];
+    values: {
+      [index: string]: {
+        type: string;
+        label: string;
+        selected: boolean;
+        sort_on?: string;
+      };
+    };
+  };
   onMoveToTop: ComponentProps<typeof ItemActionsPopover>['onMoveToTop'];
   onMoveToBottom: ComponentProps<typeof ItemActionsPopover>['onMoveToBottom'];
   onCut: ComponentProps<typeof ItemActionsPopover>['onCut'];
@@ -21,6 +30,7 @@ interface Props {
 export function ContentsCell({
   item,
   column,
+  indexes,
   onMoveToTop,
   onMoveToBottom,
   onCut,
@@ -100,7 +110,7 @@ export function ContentsCell({
       </>
     );
   } else {
-    if (indexes[column].type === 'boolean') {
+    if (indexes.values[column].type === 'boolean') {
       return (
         <>
           {item[column]
@@ -108,7 +118,7 @@ export function ContentsCell({
             : intl.formatMessage({ id: 'No' })}
         </>
       );
-    } else if (indexes[column].type === 'string') {
+    } else if (indexes.values[column].type === 'string') {
       if (column !== 'review_state') {
         return <>{item[column]}</>;
       } else {
@@ -118,14 +128,13 @@ export function ContentsCell({
           </div>
         );
       }
-    } else if (indexes[column].type === 'date') {
+    } else if (indexes.values[column].type === 'date') {
       if (item[column] && item[column] !== 'None') {
-        // @ts-ignore TODO fix this, maybe a stricter type for the indexes?
         return <FormattedDate date={item[column]} />;
       } else {
         return <>{intl.formatMessage({ id: 'None' })}</>;
       }
-    } else if (indexes[column].type === 'array') {
+    } else if (indexes.values[column].type === 'array') {
       const value = item[column];
       return <>{Array.isArray(value) ? value.join(', ') : value}</>;
     } else {

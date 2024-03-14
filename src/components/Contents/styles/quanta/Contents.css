@@ -1,7 +1,7 @@
 .folder-contents {
   #content {
-    padding: 0.5rem 2rem;
     max-width: 90rem;
+    padding: 0.5rem 2rem;
     margin: 0 auto;
   }
 
@@ -49,47 +49,17 @@
     align-items: center;
   }
 
-  .add-content-list {
-    padding: 0;
-    margin: 0;
-    list-style: none;
-  }
-
-  .add-content-list-item {
-    padding: 12px;
-
-    & + .add-content-list-item {
-      border-top: 1px solid var(--quanta-smoke);
-    }
-
-    a {
-      display: flex;
-      align-items: center;
-      color: var(--quanta-sapphire);
-      text-decoration: none;
-
-      &:hover {
-        color: var(--quanta-royal);
-        text-decoration: underline;
-      }
-    }
-
-    .icon {
-      margin-inline-start: auto;
-    }
-  }
-
   .review-state {
     display: flex;
     align-items: center;
 
     &::before {
-      content: '';
       width: 9px;
       height: 9px;
       border-radius: 50%;
-      margin-inline-end: 0.5rem;
       background-color: var(--quanta-dolphin);
+      content: '';
+      margin-inline-end: 0.5rem;
     }
 
     &.private::before {
@@ -109,6 +79,7 @@
     }
   }
 
+  .actions-cell-header,
   .contents-actions,
   .item-actions-trigger {
     --border-color: transparent;
@@ -126,11 +97,40 @@
       --text-color: var(--quanta-candy);
     }
   }
+}
 
-  .item-actions-list {
+.view-contentsview {
+  .table-indexes-list,
+  .item-actions-list,
+  .add-content-list {
     padding: 0;
     margin: 0;
     list-style: none;
+  }
+
+  .table-indexes-list-item,
+  .add-content-list-item {
+    padding: 12px;
+
+    & + li {
+      border-top: 1px solid var(--quanta-smoke);
+    }
+
+    a {
+      display: flex;
+      align-items: center;
+      color: var(--quanta-sapphire);
+      text-decoration: none;
+
+      &:hover {
+        color: var(--quanta-royal);
+        text-decoration: underline;
+      }
+    }
+
+    .icon {
+      margin-inline-start: auto;
+    }
   }
 
   .item-actions-list-item {
