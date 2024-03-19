@@ -1,5 +1,12 @@
 
 
+## [0.3.0](https://github.com/collective/volto-contents-next/compare/v0.2.0...v0.3.0) (2024-03-19)
+
+
+### Features
+
+* added sorting feature, localization and more a11y ([821871e](https://github.com/collective/volto-contents-next/commit/821871e458267f9f76760ac198a4de2e2586465d))
+
 ## [0.2.0](https://github.com/collective/volto-contents-next/compare/v0.1.1...v0.2.0) (2024-03-14)
 
 
