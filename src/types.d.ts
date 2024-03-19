@@ -8,6 +8,7 @@ import type { PreviewImage } from '@plone/types';
  */
 export type ArrayElement<A> = A extends readonly (infer T)[] ? T : never;
 
+// TODO move this to @plone/types
 export interface Brain {
   '@id': string;
   '@type': string;

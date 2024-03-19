@@ -68,8 +68,7 @@ export function ContentsCell({
       <>
         <Button
           className="react-aria-Button item-actions-trigger"
-          // TODO translate aria-label
-          aria-label="More options"
+          aria-label={intl.formatMessage({ id: 'contentsNextMoreOptions' })}
           onPress={() => setIsMoreOptionsOpen(true)}
           ref={triggerRef}
         >

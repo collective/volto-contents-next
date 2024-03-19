@@ -8,16 +8,21 @@ import {
 import { Checkbox } from '@plone/components';
 import { Column } from './Column';
 
+interface Props<T extends object> extends TableHeaderProps<T> {
+  dragColumnHeader?: React.ReactNode;
+}
+
 export function TableHeader<T extends object>({
   columns,
   children,
-}: TableHeaderProps<T>) {
+  dragColumnHeader,
+}: Props<T>) {
   let { selectionBehavior, selectionMode, allowsDragging } = useTableOptions();
 
   return (
     <RACTableHeader>
       {/* Add extra columns for drag and drop and selection. */}
-      {allowsDragging && <Column />}
+      {allowsDragging && <Column>{dragColumnHeader}</Column>}
       {selectionBehavior === 'toggle' && (
         <Column>
           {selectionMode === 'multiple' && <Checkbox slot="selection" />}

@@ -1211,6 +1211,7 @@ class Contents extends Component {
                   onSelectIndex={(index) => {
                     this.onSelectIndex(undefined, { value: index });
                   }}
+                  sortItems={(id) => this.onSortItems(undefined, { value: id })}
                   upload={this.upload}
                   rename={this.rename}
                   workflow={this.workflow}

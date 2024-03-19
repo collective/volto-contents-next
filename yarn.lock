@@ -2159,6 +2159,7 @@ __metadata:
     postcss-less: 6.0.0
     postcss-scss: 4.0.8
     prettier: 3.0.3
+    react-aria: "*"
     react-aria-components: "*"
     release-it: ^16.1.5
     stylelint: 15.10.3
@@ -9059,7 +9060,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"react-aria@npm:^3.32.1":
+"react-aria@npm:*, react-aria@npm:^3.32.1":
   version: 3.32.1
   resolution: "react-aria@npm:3.32.1"
   dependencies:

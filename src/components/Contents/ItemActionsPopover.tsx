@@ -1,8 +1,8 @@
 import React from 'react';
+import { useIntl } from 'react-intl';
 import {
   Link,
   Button,
-  Popover,
   type PopoverProps,
   EditIcon,
   EyeIcon,
@@ -12,6 +12,7 @@ import {
   CopyIcon,
   BinIcon,
 } from '@plone/components';
+import { Popover } from '../Popover';
 
 interface Props extends Omit<PopoverProps, 'children'> {
   editLink: string;
@@ -33,52 +34,55 @@ export function ItemActionsPopover({
   onDelete,
   ...popoverProps
 }: Props) {
+  const intl = useIntl();
+
   return (
     <Popover
       {...popoverProps}
-      className="react-aria-Popover item-actions-popover"
+      className="react-aria-Popover item-actions-popover scroll"
+      dialogAriaLabel={intl.formatMessage({ id: 'Actions' })}
     >
       <ul className="item-actions-list">
         <li className="item-actions-list-item edit">
           <Link href={editLink}>
             <EditIcon />
-            Edit
+            {intl.formatMessage({ id: 'Edit' })}
           </Link>
         </li>
         <li className="item-actions-list-item view">
           <Link href={viewLink}>
             <EyeIcon />
-            View
+            {intl.formatMessage({ id: 'View' })}
           </Link>
         </li>
         <li className="item-actions-list-item move-to-top">
           <Button onPress={onMoveToTop}>
             <RowbeforeIcon />
-            Move to top
+            {intl.formatMessage({ id: 'Move to top of folder' })}
           </Button>
         </li>
         <li className="item-actions-list-item move-to-bottom">
           <Button onPress={onMoveToBottom}>
             <RowafterIcon />
-            Move to bottom
+            {intl.formatMessage({ id: 'Move to bottom of folder' })}
           </Button>
         </li>
         <li className="item-actions-list-item cut">
           <Button onPress={onCut}>
             <CutIcon />
-            Cut
+            {intl.formatMessage({ id: 'Cut' })}
           </Button>
         </li>
         <li className="item-actions-list-item copy">
           <Button onPress={onCopy}>
             <CopyIcon />
-            Copy
+            {intl.formatMessage({ id: 'Copy' })}
           </Button>
         </li>
         <li className="item-actions-list-item delete">
           <Button onPress={onDelete}>
             <BinIcon />
-            Delete
+            {intl.formatMessage({ id: 'Delete' })}
           </Button>
         </li>
       </ul>

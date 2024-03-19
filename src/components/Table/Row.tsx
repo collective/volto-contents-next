@@ -21,7 +21,7 @@ export function Row<T extends object>({
     <RACRow id={id} {...otherProps}>
       {allowsDragging && (
         <Cell>
-          <Button slot="drag" aria-label="Drag">
+          <Button slot="drag">
             <DraggableIcon />
           </Button>
         </Cell>

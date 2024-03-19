@@ -50,6 +50,7 @@
   "dependencies": {
     "@plone/components": "alpha",
     "@plone/types": "alpha",
+    "react-aria": "*",
     "react-aria-components": "*"
   }
 }

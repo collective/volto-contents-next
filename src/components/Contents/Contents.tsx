@@ -1,18 +1,21 @@
 import React, { ComponentProps } from 'react';
 import './styles/basic/main.css';
 import './styles/quanta/main.css';
-import type { ActionsResponse } from '@plone/types';
+// import type { ActionsResponse } from '@plone/types';
+import { VisuallyHidden } from 'react-aria';
 import {
   TooltipTrigger,
   useDragAndDrop,
   type Selection,
   DialogTrigger,
+  MenuTrigger,
 } from 'react-aria-components';
 import { useIntl } from 'react-intl';
 import {
   BinIcon,
   // AddIcon,
   Breadcrumbs,
+  CollectionIcon,
   Container,
   CopyIcon,
   CutIcon,
@@ -30,16 +33,16 @@ import { Button } from '../Button';
 import { Table } from '../Table/Table';
 import { ContentsCell } from './ContentsCell';
 import { TableIndexesPopover } from './TableIndexesPopover';
+import { RearrangePopover } from './RearrangePopover';
 // import { AddContentPopover } from './AddContentPopover';
-// import { indexes, defaultIndexes } from '../../indexes';
 import type { ArrayElement, Brain } from '../../types';
 
 interface ContentsProps {
-  pathname: string;
+  // pathname: string;
   breadcrumbs: ComponentProps<typeof Breadcrumbs>['items'];
-  objectActions: ActionsResponse['object'];
+  // objectActions: ActionsResponse['object'];
   title: string;
-  loading: boolean;
+  // loading: boolean;
   canPaste: boolean;
   textFilter: string;
   onChangeTextFilter: (value: string) => void;
@@ -59,6 +62,7 @@ interface ContentsProps {
     selectedCount: number;
   };
   onSelectIndex: (index: string) => void;
+  sortItems: (index: string) => void;
   upload: () => Promise<void>;
   rename: () => Promise<void>;
   workflow: () => Promise<void>;
@@ -81,19 +85,20 @@ interface ContentsProps {
  * Items can be sorted by drag and drop.
  */
 export function Contents({
-  pathname,
+  // pathname,
   breadcrumbs = [],
-  objectActions,
+  // objectActions,
   title,
-  loading,
+  // loading,
   canPaste,
   textFilter,
   onChangeTextFilter,
   items,
   selected,
   setSelected,
-  indexes,
+  indexes: baseIndexes,
   onSelectIndex,
+  sortItems,
   upload,
   rename,
   workflow,
@@ -120,6 +125,16 @@ export function Contents({
   //   return null;
   // }
 
+  // TODO "id" is a reserved key for table rows, so we cannot add the "ID" column at this time
+  const indexes = {
+    ...baseIndexes,
+    order: baseIndexes.order.filter((index) => index !== 'id'),
+    values: Object.fromEntries(
+      Object.entries(baseIndexes.values).filter(([key]) => key !== 'id'),
+    ),
+  };
+  console.log(indexes);
+
   const columns = [
     {
       id: 'title',
@@ -134,7 +149,6 @@ export function Contents({
       })),
     {
       id: '_actions',
-      // name: intl.formatMessage({ id: 'Actions' }),
       name: (
         <DialogTrigger>
           <TooltipTrigger>
@@ -142,7 +156,7 @@ export function Contents({
               <MoreoptionsIcon />
             </Button>
             <Tooltip className="react-aria-Tooltip tooltip" placement="bottom">
-              {intl.formatMessage({ id: 'Actions' })}
+              {intl.formatMessage({ id: 'contentsNextSelectColumnsToDisplay' })}
             </Tooltip>
           </TooltipTrigger>
           <TableIndexesPopover
@@ -160,7 +174,6 @@ export function Contents({
         ...cells,
         [column.id]: (
           <ContentsCell
-            key={column.id}
             item={item}
             column={column.id}
             indexes={indexes}
@@ -172,7 +185,12 @@ export function Contents({
           />
         ),
       }),
-      { id: item['@id'] },
+      {
+        id: item['@id'],
+        // Automatic textValue generation does not work
+        // because the title column is a ReactNode and not a string
+        textValue: item.title,
+      },
     ),
   );
 
@@ -213,7 +231,7 @@ export function Contents({
       as="div"
       // id="page-contents"
       className="folder-contents"
-      aria-live="polite"
+      // aria-live="polite"
       layout={false}
       narrow={false}
     >
@@ -235,6 +253,7 @@ export function Contents({
               <Button
                 className="react-aria-Button contents-action-trigger upload"
                 onPress={upload}
+                aria-label={intl.formatMessage({ id: 'Upload' })}
               >
                 <UploadIcon />
               </Button>
@@ -246,6 +265,7 @@ export function Contents({
               <Button
                 className="react-aria-Button contents-action-trigger rename"
                 onPress={rename}
+                aria-label={intl.formatMessage({ id: 'Rename' })}
                 isDisabled={selected !== 'all' && selected.size === 0}
               >
                 <RenameIcon />
@@ -258,6 +278,7 @@ export function Contents({
               <Button
                 className="react-aria-Button contents-action-trigger state"
                 onPress={workflow}
+                aria-label={intl.formatMessage({ id: 'State' })}
                 isDisabled={selected !== 'all' && selected.size === 0}
               >
                 <StateIcon />
@@ -270,6 +291,7 @@ export function Contents({
               <Button
                 className="react-aria-Button contents-action-trigger tags"
                 onPress={tags}
+                aria-label={intl.formatMessage({ id: 'Tags' })}
                 isDisabled={selected !== 'all' && selected.size === 0}
               >
                 <TagIcon />
@@ -282,6 +304,7 @@ export function Contents({
               <Button
                 className="react-aria-Button contents-action-trigger properties"
                 onPress={properties}
+                aria-label={intl.formatMessage({ id: 'Properties' })}
                 isDisabled={selected !== 'all' && selected.size === 0}
               >
                 <PropertiesIcon />
@@ -294,6 +317,7 @@ export function Contents({
               <Button
                 className="react-aria-Button contents-action-trigger cut"
                 onPress={() => cut()}
+                aria-label={intl.formatMessage({ id: 'Cut' })}
                 isDisabled={selected !== 'all' && selected.size === 0}
               >
                 <CutIcon />
@@ -306,6 +330,7 @@ export function Contents({
               <Button
                 className="react-aria-Button contents-action-trigger copy"
                 onPress={() => copy()}
+                aria-label={intl.formatMessage({ id: 'Copy' })}
                 isDisabled={selected !== 'all' && selected.size === 0}
               >
                 <CopyIcon />
@@ -318,6 +343,7 @@ export function Contents({
               <Button
                 className="react-aria-Button contents-action-trigger paste"
                 onPress={paste}
+                aria-label={intl.formatMessage({ id: 'Paste' })}
                 isDisabled={!canPaste}
               >
                 <PasteIcon />
@@ -330,6 +356,7 @@ export function Contents({
               <Button
                 className="react-aria-Button contents-action-trigger delete"
                 onPress={() => deleteItem()}
+                aria-label={intl.formatMessage({ id: 'Delete' })}
                 isDisabled={selected !== 'all' && selected.size === 0}
               >
                 <BinIcon />
@@ -341,11 +368,19 @@ export function Contents({
           </div>
           <QuantaTextField
             name="sortable_title"
-            placeholder="Search site"
+            placeholder={intl.formatMessage({ id: 'Filter…' })}
             className="search-input"
             value={textFilter}
             onChange={onChangeTextFilter}
           />
+          <VisuallyHidden>
+            <span aria-live="polite">
+              {intl.formatMessage(
+                { id: 'contentsNextNumberOfItems' },
+                { count: items.length },
+              )}
+            </span>
+          </VisuallyHidden>
           {/* <TooltipTrigger>
             <DialogTrigger>
               <Button className="react-aria-Button add">
@@ -360,13 +395,35 @@ export function Contents({
         </section>
         <section className="contents-table">
           <Table
-            aria-label={intl.formatMessage({ id: 'Contents' })}
+            aria-label={intl.formatMessage(
+              { id: 'contentsNextContentsOf' },
+              { title },
+            )}
             columns={[...columns]}
             rows={rows}
             selectionMode="multiple"
             selectedKeys={selected}
             onSelectionChange={setSelected}
             dragAndDropHooks={dragAndDropHooks}
+            dragColumnHeader={
+              <MenuTrigger>
+                <TooltipTrigger>
+                  <Button className="react-aria-Button drag-cell-header">
+                    <CollectionIcon />
+                  </Button>
+                  <Tooltip
+                    className="react-aria-Tooltip tooltip"
+                    placement="bottom"
+                  >
+                    {intl.formatMessage({ id: 'Rearrange items by…' })}
+                  </Tooltip>
+                </TooltipTrigger>
+                <RearrangePopover
+                  indexes={indexes.values}
+                  sortItems={sortItems}
+                />
+              </MenuTrigger>
+            }
             // onRowSelection={onRowSelection}
             // resizableColumns={true}
           />

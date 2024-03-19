@@ -1,4 +1,4 @@
-import React, { type ReactNode } from 'react';
+import React, { type ReactNode, type ComponentProps } from 'react';
 import {
   type TableProps as RACTableProps,
   ResizableTableContainer,
@@ -20,6 +20,7 @@ interface ColumnType {
 
 interface RowType {
   id: string;
+  textValue?: string;
   [key: string]: ReactNode; // TODO can we make this more specific?
 }
 
@@ -27,6 +28,7 @@ interface TableProps<C, R> extends RACTableProps {
   columns?: C[];
   rows?: R[];
   resizableColumns?: boolean;
+  dragColumnHeader?: ComponentProps<typeof TableHeader>['dragColumnHeader'];
   // TODO maybe a custom "selectall" component? Is it doable with react-aria-components?
 }
 
@@ -39,13 +41,14 @@ export function Table<C extends ColumnType, R extends RowType>({
   columns,
   rows,
   resizableColumns,
+  dragColumnHeader,
   ...otherProps
 }: TableProps<C, R>) {
   let table = null;
   if (Array.isArray(columns) && Array.isArray(rows)) {
     table = (
       <RACTable {...otherProps}>
-        <TableHeader columns={columns}>
+        <TableHeader columns={columns} dragColumnHeader={dragColumnHeader}>
           {(column) => (
             <Column isRowHeader={column.isRowHeader}>
               {resizableColumns && (
@@ -62,7 +65,7 @@ export function Table<C extends ColumnType, R extends RowType>({
         </TableHeader>
         <TableBody items={rows}>
           {(item) => (
-            <Row columns={columns}>
+            <Row columns={columns} textValue={item.textValue}>
               {(column) => <Cell>{item[column.id]}</Cell>}
             </Row>
           )}

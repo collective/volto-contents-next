@@ -1,7 +1,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Plone\n"
-"POT-Creation-Date: 2024-03-12T14:59:02.523Z\n"
+"POT-Creation-Date: 2024-03-18T16:31:35.304Z\n"
 "Last-Translator: Plone i18n <plone-i18n@lists.sourceforge.net>\n"
 "Language-Team: Plone i18n <plone-i18n@lists.sourceforge.net>\n"
 "Content-Type: text/plain; charset=utf-8\n"
@@ -13,4 +13,27 @@ msgstr ""
 "Preferred-Encodings: utf-8\n"
 "Domain: volto\n"
 
+#. Default: "Contents of {title}"
+#: i18n
+msgid "contentsNextContentsOf"
+msgstr ""
 
+#. Default: "More options"
+#: i18n
+msgid "contentsNextMoreOptions"
+msgstr ""
+
+#. Default: "Number of content items: {count}"
+#: i18n
+msgid "contentsNextNumberOfItems"
+msgstr ""
+
+#. Default: "Pick sort order for {index}"
+#: i18n
+msgid "contentsNextPickSortOrder"
+msgstr ""
+
+#. Default: "Select columns to display"
+#: i18n
+msgid "contentsNextSelectColumnsToDisplay"
+msgstr ""

@@ -1,0 +1,37 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: \n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: \n"
+"PO-Revision-Date: \n"
+"Last-Translator: \n"
+"Language: \n"
+"Language-Team: \n"
+"Content-Type: \n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: \n"
+
+#. Default: "Contents of {title}"
+#: i18n
+msgid "contentsNextContentsOf"
+msgstr "Contenuti di {title}"
+
+#. Default: "More options"
+#: i18n
+msgid "contentsNextMoreOptions"
+msgstr "Altre opzioni"
+
+#. Default: "Number of content items: {count}"
+#: i18n
+msgid "contentsNextNumberOfItems"
+msgstr "Numero di elementi contenuti: {count}"
+
+#. Default: "Pick sort order for {index}"
+#: i18n
+msgid "contentsNextPickSortOrder"
+msgstr "Scegli l'ordinamento per {index}"
+
+#. Default: "Select columns to display"
+#: i18n
+msgid "contentsNextSelectColumnsToDisplay"
+msgstr "Seleziona le colonne da visualizzare"

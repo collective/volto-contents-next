@@ -20,7 +20,7 @@ export const TableIndexesPopover = ({ indexes, onSelectIndex }: Props) => {
   const intl = useIntl();
 
   return (
-    <Popover className="react-aria-Popover table-indexes-popover">
+    <Popover className="react-aria-Popover table-indexes-popover scroll">
       <ul className="table-indexes-list">
         {indexes.order.map((index) => {
           if (index === 'sortable_title') return null;
