@@ -1,5 +1,12 @@
 
 
+## [0.3.2](https://github.com/collective/volto-contents-next/compare/v0.3.1...v0.3.2) (2024-05-02)
+
+
+### Maintenance
+
+* dedupe deps ([0a364e9](https://github.com/collective/volto-contents-next/commit/0a364e974bdf7be93a820d7f0e3aecb4f75338a9))
+
 ## [0.3.1](https://github.com/collective/volto-contents-next/compare/v0.3.0...v0.3.1) (2024-05-02)
 
 
