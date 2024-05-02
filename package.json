@@ -25,6 +25,7 @@
   "devDependencies": {
     "@babel/eslint-parser": "7.22.15",
     "@plone/scripts": "^3.3.2",
+    "@plone/types": "1.0.0-alpha.11",
     "@release-it/conventional-changelog": "8.0.1",
     "eslint": "8.49.0",
     "eslint-config-prettier": "9.0.0",
@@ -45,12 +46,11 @@
     "stylelint-prettier": "4.0.2"
   },
   "peerDependencies": {
-    "@plone/volto": "^17.0.0"
+    "@plone/volto": ">=17.0.0"
   },
   "dependencies": {
     "@plone/components": "alpha",
-    "@plone/types": "alpha",
-    "react-aria": "*",
-    "react-aria-components": "*"
+    "react-aria": "3.33.0",
+    "react-aria-components": "1.2.0"
   }
 }
