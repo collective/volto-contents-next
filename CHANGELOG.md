@@ -1,3 +1,17 @@
+
+
+## [0.3.1](https://github.com/collective/volto-contents-next/compare/v0.3.0...v0.3.1) (2024-05-02)
+
+
+### Maintenance
+
+* update dependencies ([da6c07e](https://github.com/collective/volto-contents-next/commit/da6c07e2142efdc10fdcc2cc15fc35f5c7aa5489))
+
+
+### Documentation
+
+* cleanup changelog ([9064502](https://github.com/collective/volto-contents-next/commit/906450231478d9f2605b2e546f7a6173e5f50541))
+
 # Release Notes
 
 
@@ -22,4 +36,3 @@
 
 * import initial code and configuration ([6671955](https://github.com/collective/volto-contents-next/commit/66719555a8e920b5eea55faaab2f9eb0bce22a19))
 * init locales ([115fa78](https://github.com/collective/volto-contents-next/commit/115fa78761305a77046d57bd8aca3fef6d0149c7))
-
