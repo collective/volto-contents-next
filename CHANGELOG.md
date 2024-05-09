@@ -1,5 +1,12 @@
 
 
+## [0.4.0](https://github.com/collective/volto-contents-next/compare/v0.3.3...v0.4.0) (2024-05-09)
+
+
+### Features
+
+* finished first draft ([28e2f70](https://github.com/collective/volto-contents-next/commit/28e2f70b23c6c9eeddfb3f8dba31a095e8b78049))
+
 ## [0.3.3](https://github.com/collective/volto-contents-next/compare/v0.3.2...v0.3.3) (2024-05-03)
 
 
