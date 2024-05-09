@@ -543,11 +543,14 @@ class Contents extends Component {
       this.props.clipboardRequest.loading &&
       nextProps.clipboardRequest.error
     ) {
+      const msgBody =
+        nextProps.clipboardRequest.error?.response?.body?.message ||
+        this.props.intl.formatMessage(messages.error);
       this.props.toastify.toast.error(
         <Toast
           error
           title={this.props.intl.formatMessage(messages.error)}
-          content={this.props.intl.formatMessage(messages.error)}
+          content={msgBody}
         />,
       );
     }
@@ -1242,6 +1245,7 @@ class Contents extends Component {
                       this.onMoveToBottom(undefined, { value: index }),
                     )
                   }
+                  toast={this.props.toastify.toast}
                   // addableTypes={this.props.addableTypes}
                 />
               </RouterProvider>
@@ -1525,7 +1529,6 @@ class Contents extends Component {
                 }
                 onCancel={this.onDeleteCancel}
                 onConfirm={this.onDeleteOk}
-                size="medium"
               />
               <ContentsUploadModal
                 open={this.state.showUpload}

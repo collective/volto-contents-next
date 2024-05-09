@@ -69,11 +69,11 @@ export function RearrangePopover({
                 <MenuItem
                   key={item.id}
                   textValue={item.name}
-                  // className={({ isFocused, isOpen }) =>
-                  //   `react-aria-MenuItem rearrange-menu-item ${
-                  //     isFocused ? 'focused' : ''
-                  //   } ${isOpen ? 'open' : ''}`
-                  // }
+                  className={({ isFocused, isOpen }) =>
+                    `react-aria-MenuItem rearrange-menu-item ${
+                      isFocused ? 'focused' : ''
+                    } ${isOpen ? 'open' : ''}`
+                  }
                 >
                   {({ hasSubmenu }) => (
                     <>

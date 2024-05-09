@@ -11,6 +11,11 @@ msgstr ""
 "Content-Transfer-Encoding: \n"
 "Plural-Forms: \n"
 
+#. Default: "Only one item can be moved at a time"
+#: i18n
+msgid "contentsMultipleItemsMovedError"
+msgstr "È possibile spostare un solo elemento alla volta"
+
 #. Default: "Contents of {title}"
 #: i18n
 msgid "contentsNextContentsOf"

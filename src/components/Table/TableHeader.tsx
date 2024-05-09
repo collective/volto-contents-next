@@ -22,7 +22,11 @@ export function TableHeader<T extends object>({
   return (
     <RACTableHeader>
       {/* Add extra columns for drag and drop and selection. */}
-      {allowsDragging && <Column>{dragColumnHeader}</Column>}
+      {allowsDragging && (
+        <Column className="react-aria-Column drag-column-header">
+          {dragColumnHeader}
+        </Column>
+      )}
       {selectionBehavior === 'toggle' && (
         <Column>
           {selectionMode === 'multiple' && <Checkbox slot="selection" />}

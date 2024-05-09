@@ -21,4 +21,8 @@ export const messages = defineMessages({
     id: 'contentsNextSelectColumnsToDisplay',
     defaultMessage: 'Select columns to display',
   },
+  contentsMultipleItemsMovedError: {
+    id: 'contentsMultipleItemsMovedError',
+    defaultMessage: 'Only one item can be moved at a time',
+  },
 });

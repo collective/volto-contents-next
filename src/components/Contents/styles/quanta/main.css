@@ -1,4 +1,5 @@
 @import './colors.css';
+@import './theme.css';
 
 /* Components */
 @import './TextField.css';
@@ -18,6 +19,6 @@
 
 .view-contentsview .contents-pagination {
   max-width: 90rem;
-  margin: 0 auto 6rem;
   padding: 0 2rem;
+  margin: 0 auto 6rem;
 }

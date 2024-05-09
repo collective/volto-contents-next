@@ -56,31 +56,31 @@ export function ItemActionsPopover({
           </Link>
         </li>
         <li className="item-actions-list-item move-to-top">
-          <Button onPress={onMoveToTop}>
+          <Button onPress={onMoveToTop} className="react-aria-Link">
             <RowbeforeIcon />
             {intl.formatMessage({ id: 'Move to top of folder' })}
           </Button>
         </li>
         <li className="item-actions-list-item move-to-bottom">
-          <Button onPress={onMoveToBottom}>
+          <Button onPress={onMoveToBottom} className="react-aria-Link">
             <RowafterIcon />
             {intl.formatMessage({ id: 'Move to bottom of folder' })}
           </Button>
         </li>
         <li className="item-actions-list-item cut">
-          <Button onPress={onCut}>
+          <Button onPress={onCut} className="react-aria-Link">
             <CutIcon />
             {intl.formatMessage({ id: 'Cut' })}
           </Button>
         </li>
         <li className="item-actions-list-item copy">
-          <Button onPress={onCopy}>
+          <Button onPress={onCopy} className="react-aria-Link">
             <CopyIcon />
             {intl.formatMessage({ id: 'Copy' })}
           </Button>
         </li>
         <li className="item-actions-list-item delete">
-          <Button onPress={onDelete}>
+          <Button onPress={onDelete} className="react-aria-Link">
             <BinIcon />
             {intl.formatMessage({ id: 'Delete' })}
           </Button>

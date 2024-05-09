@@ -1,4 +1,4 @@
-import React, { ComponentProps } from 'react';
+import { ComponentProps } from 'react';
 import './styles/basic/main.css';
 import './styles/quanta/main.css';
 // import type { ActionsResponse } from '@plone/types';
@@ -11,29 +11,25 @@ import {
   MenuTrigger,
 } from 'react-aria-components';
 import { useIntl } from 'react-intl';
+import { useMediaQuery } from 'usehooks-ts';
 import {
-  BinIcon,
   // AddIcon,
   Breadcrumbs,
   CollectionIcon,
   Container,
-  CopyIcon,
-  CutIcon,
   MoreoptionsIcon,
   PasteIcon,
-  PropertiesIcon,
   QuantaTextField,
-  RenameIcon,
-  StateIcon,
-  TagIcon,
   Tooltip,
-  UploadIcon,
 } from '@plone/components';
+import { Toast } from '@plone/volto/components';
+import type { Toast as ToastType } from 'react-toastify';
 import { Button } from '../Button';
 import { Table } from '../Table/Table';
 import { ContentsCell } from './ContentsCell';
 import { TableIndexesPopover } from './TableIndexesPopover';
 import { RearrangePopover } from './RearrangePopover';
+import { ContentsActions } from './ContentsActions';
 // import { AddContentPopover } from './AddContentPopover';
 import type { ArrayElement, Brain } from '../../types';
 
@@ -76,6 +72,7 @@ interface ContentsProps {
   moveToTop: (index: number) => Promise<void>;
   moveToBottom: (index: number) => Promise<void>;
   // addableTypes: ComponentProps<typeof AddContentPopover>['addableTypes'];
+  toast: ToastType;
 }
 
 /**
@@ -111,8 +108,10 @@ export function Contents({
   orderItem,
   moveToTop,
   moveToBottom, // addableTypes,
+  toast,
 }: ContentsProps) {
   const intl = useIntl();
+  const isMobileScreenSize = useMediaQuery('(max-width: 768px)');
 
   // const folderContentsActions = objectActions.find(
   //   (action) => action.id === 'folderContents',
@@ -133,7 +132,6 @@ export function Contents({
       Object.entries(baseIndexes.values).filter(([key]) => key !== 'id'),
     ),
   };
-  console.log(indexes);
 
   const columns = [
     {
@@ -141,22 +139,26 @@ export function Contents({
       name: intl.formatMessage({ id: 'Title' }),
       isRowHeader: true,
     },
-    ...indexes.order
-      .filter((index) => indexes.values[index].selected)
-      .map((index) => ({
-        id: index,
-        name: intl.formatMessage({ id: indexes.values[index].label }),
-      })),
+    ...(!isMobileScreenSize
+      ? indexes.order
+          .filter((index) => indexes.values[index].selected)
+          .map((index) => ({
+            id: index,
+            name: intl.formatMessage({ id: indexes.values[index].label }),
+          }))
+      : []),
     {
       id: '_actions',
-      name: (
+      name: !isMobileScreenSize ? (
         <DialogTrigger>
           <TooltipTrigger>
             <Button className="react-aria-Button actions-cell-header">
               <MoreoptionsIcon />
             </Button>
             <Tooltip className="react-aria-Tooltip tooltip" placement="bottom">
-              {intl.formatMessage({ id: 'contentsNextSelectColumnsToDisplay' })}
+              {intl.formatMessage({
+                id: 'contentsNextSelectColumnsToDisplay',
+              })}
             </Tooltip>
           </TooltipTrigger>
           <TableIndexesPopover
@@ -164,7 +166,21 @@ export function Contents({
             onSelectIndex={onSelectIndex}
           />
         </DialogTrigger>
-      ),
+      ) : canPaste ? (
+        <TooltipTrigger>
+          <Button
+            className="react-aria-Button contents-action-trigger paste"
+            onPress={paste}
+            aria-label={intl.formatMessage({ id: 'Paste' })}
+            isDisabled={!canPaste}
+          >
+            <PasteIcon />
+          </Button>
+          <Tooltip placement="bottom">
+            {intl.formatMessage({ id: 'Paste' })}
+          </Tooltip>
+        </TooltipTrigger>
+      ) : null,
     },
   ] as const;
 
@@ -195,14 +211,22 @@ export function Contents({
   );
 
   const { dragAndDropHooks } = useDragAndDrop({
+    isDisabled: isMobileScreenSize || selected === 'all' || selected.size > 1,
     getItems: (keys) =>
       [...keys].map((key) => ({
         'text/plain': key.toString(),
       })),
     onReorder(e) {
       if (e.keys.size !== 1) {
-        // TODO mostrare toast o rendere non ordinabile quando più di un elemento è selezionato
-        console.error('Only one item can be moved at a time');
+        toast.error(
+          <Toast
+            error
+            title={intl.formatMessage({ id: 'Error' })}
+            content={intl.formatMessage({
+              id: 'contentsMultipleItemsMovedError',
+            })}
+          />,
+        );
         return;
       }
       const target = [...e.keys][0];
@@ -235,137 +259,31 @@ export function Contents({
       layout={false}
       narrow={false}
     >
-      {/* TODO better loader */}
-      {/* {loading && <p>Loading...</p>} */}
-      {/* TODO helmet setting title here... or should we do it at a higher level? */}
       <article id="content">
         <section className="topbar">
           <div className="title-block">
             <Breadcrumbs
               includeRoot={true}
               root="/contents"
-              items={[...breadcrumbs].slice(0, -1)}
+              items={breadcrumbs}
             />
             <h1>{title}</h1>
           </div>
-          <div className="contents-actions">
-            <TooltipTrigger>
-              <Button
-                className="react-aria-Button contents-action-trigger upload"
-                onPress={upload}
-                aria-label={intl.formatMessage({ id: 'Upload' })}
-              >
-                <UploadIcon />
-              </Button>
-              <Tooltip placement="bottom">
-                {intl.formatMessage({ id: 'Upload' })}
-              </Tooltip>
-            </TooltipTrigger>
-            <TooltipTrigger>
-              <Button
-                className="react-aria-Button contents-action-trigger rename"
-                onPress={rename}
-                aria-label={intl.formatMessage({ id: 'Rename' })}
-                isDisabled={selected !== 'all' && selected.size === 0}
-              >
-                <RenameIcon />
-              </Button>
-              <Tooltip placement="bottom">
-                {intl.formatMessage({ id: 'Rename' })}
-              </Tooltip>
-            </TooltipTrigger>
-            <TooltipTrigger>
-              <Button
-                className="react-aria-Button contents-action-trigger state"
-                onPress={workflow}
-                aria-label={intl.formatMessage({ id: 'State' })}
-                isDisabled={selected !== 'all' && selected.size === 0}
-              >
-                <StateIcon />
-              </Button>
-              <Tooltip placement="bottom">
-                {intl.formatMessage({ id: 'State' })}
-              </Tooltip>
-            </TooltipTrigger>
-            <TooltipTrigger>
-              <Button
-                className="react-aria-Button contents-action-trigger tags"
-                onPress={tags}
-                aria-label={intl.formatMessage({ id: 'Tags' })}
-                isDisabled={selected !== 'all' && selected.size === 0}
-              >
-                <TagIcon />
-              </Button>
-              <Tooltip placement="bottom">
-                {intl.formatMessage({ id: 'Tags' })}
-              </Tooltip>
-            </TooltipTrigger>
-            <TooltipTrigger>
-              <Button
-                className="react-aria-Button contents-action-trigger properties"
-                onPress={properties}
-                aria-label={intl.formatMessage({ id: 'Properties' })}
-                isDisabled={selected !== 'all' && selected.size === 0}
-              >
-                <PropertiesIcon />
-              </Button>
-              <Tooltip placement="bottom">
-                {intl.formatMessage({ id: 'Properties' })}
-              </Tooltip>
-            </TooltipTrigger>
-            <TooltipTrigger>
-              <Button
-                className="react-aria-Button contents-action-trigger cut"
-                onPress={() => cut()}
-                aria-label={intl.formatMessage({ id: 'Cut' })}
-                isDisabled={selected !== 'all' && selected.size === 0}
-              >
-                <CutIcon />
-              </Button>
-              <Tooltip placement="bottom">
-                {intl.formatMessage({ id: 'Cut' })}
-              </Tooltip>
-            </TooltipTrigger>
-            <TooltipTrigger>
-              <Button
-                className="react-aria-Button contents-action-trigger copy"
-                onPress={() => copy()}
-                aria-label={intl.formatMessage({ id: 'Copy' })}
-                isDisabled={selected !== 'all' && selected.size === 0}
-              >
-                <CopyIcon />
-              </Button>
-              <Tooltip placement="bottom">
-                {intl.formatMessage({ id: 'Copy' })}
-              </Tooltip>
-            </TooltipTrigger>
-            <TooltipTrigger>
-              <Button
-                className="react-aria-Button contents-action-trigger paste"
-                onPress={paste}
-                aria-label={intl.formatMessage({ id: 'Paste' })}
-                isDisabled={!canPaste}
-              >
-                <PasteIcon />
-              </Button>
-              <Tooltip placement="bottom">
-                {intl.formatMessage({ id: 'Paste' })}
-              </Tooltip>
-            </TooltipTrigger>
-            <TooltipTrigger>
-              <Button
-                className="react-aria-Button contents-action-trigger delete"
-                onPress={() => deleteItem()}
-                aria-label={intl.formatMessage({ id: 'Delete' })}
-                isDisabled={selected !== 'all' && selected.size === 0}
-              >
-                <BinIcon />
-              </Button>
-              <Tooltip placement="bottom">
-                {intl.formatMessage({ id: 'Delete' })}
-              </Tooltip>
-            </TooltipTrigger>
-          </div>
+          {!isMobileScreenSize && (
+            <ContentsActions
+              upload={upload}
+              rename={rename}
+              workflow={workflow}
+              tags={tags}
+              properties={properties}
+              cut={cut}
+              copy={copy}
+              paste={paste}
+              deleteItem={deleteItem}
+              canPaste={canPaste}
+              selected={selected}
+            />
+          )}
           <QuantaTextField
             name="sortable_title"
             placeholder={intl.formatMessage({ id: 'Filter…' })}
@@ -401,7 +319,7 @@ export function Contents({
             )}
             columns={[...columns]}
             rows={rows}
-            selectionMode="multiple"
+            selectionMode={!isMobileScreenSize ? 'multiple' : undefined}
             selectedKeys={selected}
             onSelectionChange={setSelected}
             dragAndDropHooks={dragAndDropHooks}

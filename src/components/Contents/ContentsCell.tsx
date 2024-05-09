@@ -1,6 +1,7 @@
 import React, { ComponentProps, useRef, useState } from 'react';
 import { useIntl } from 'react-intl';
-import { FormattedDate } from '@plone/volto/components';
+import { FormattedDate, Icon } from '@plone/volto/components';
+import { getContentIcon } from '@plone/volto/helpers';
 import { Brain } from '../../types';
 import { Link, MoreoptionsIcon, PageIcon } from '@plone/components';
 import { Button } from '../Button';
@@ -47,7 +48,12 @@ export function ContentsCell({
         className="react-aria-Link title-link"
         href={`${item['@id']}${item.is_folderish ? '/contents' : ''}`}
       >
-        <PageIcon />
+        <Icon
+          name={getContentIcon(item['@type'], item.is_folderish)}
+          size="20px"
+          className="icon-margin"
+          title={item['Type'] || item['@type']}
+        />
         {item.title}
         {item.ExpirationDate !== 'None' &&
           new Date(item.ExpirationDate).getTime() < new Date().getTime() && (

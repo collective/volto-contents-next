@@ -20,7 +20,7 @@ export function Row<T extends object>({
   return (
     <RACRow id={id} {...otherProps}>
       {allowsDragging && (
-        <Cell>
+        <Cell className="react-aria-Cell drag-cell">
           <Button slot="drag">
             <DraggableIcon />
           </Button>

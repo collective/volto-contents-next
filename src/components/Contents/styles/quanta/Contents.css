@@ -1,19 +1,20 @@
 .folder-contents {
   #content {
     max-width: 90rem;
-    padding: 0.5rem 2rem;
+    padding: 0.5rem 1rem;
     margin: 0 auto;
   }
 
   .topbar {
     display: flex;
+    flex-flow: row wrap;
     align-items: center;
     margin-bottom: 1.5rem;
+    gap: 1rem;
   }
 
-  .search-input {
-    /* margin-inline-end: 3.75rem; */
-    margin-inline-start: 1.5rem;
+  .react-aria-Breadcrumbs .react-aria-Link {
+    font-size: 0.89rem;
   }
 
   .contents-table {
@@ -38,6 +39,11 @@
   .title-link {
     display: inline-flex;
     align-items: center;
+
+    .icon-margin {
+      flex-shrink: 0;
+      margin-inline-end: 0.5rem;
+    }
   }
 
   .review-state {
@@ -89,9 +95,19 @@
       --text-color: var(--quanta-candy);
     }
   }
+
+  .drag-column-header,
+  .drag-cell {
+    display: none;
+  }
 }
 
-.view-contentsview {
+body.view-contentsview {
+  h1 {
+    margin-top: 0.4em;
+    font-size: 1.5rem;
+  }
+
   .tooltip {
     padding: 0.1875rem 0.375rem;
     border-radius: 3px;
@@ -146,20 +162,76 @@
 
   .item-actions-list-item {
     padding: 12px 0;
+    font-size: 1rem;
 
-    .view,
-    .move-to-bottom {
+    &.view,
+    &.move-to-bottom {
       border-bottom: 1px solid var(--quanta-smoke);
+    }
+
+    &.delete {
+      --link-color: var(--quanta-candy);
     }
 
     .icon {
       margin-inline-end: 1rem;
     }
 
-    .react-aria-Button {
-      --border-color: transparent;
-      --border-color-pressed: transparent;
+    .react-aria-Link {
+      display: inline-flex;
+      align-items: center;
       padding: 0;
+      border: 0;
+      background: 0 none;
+      text-align: left;
+    }
+  }
+
+  .react-aria-Dialog {
+    padding: 0.75rem;
+
+    .react-aria-Checkbox {
+      font-size: 1rem;
+    }
+  }
+
+  .react-aria-MenuItem {
+    font-size: 1rem;
+  }
+
+  .rearrange-menu-item {
+    display: flex;
+    justify-content: space-between;
+
+    .icon {
+      flex-shrink: 0;
+    }
+
+    &.open {
+      background-color: var(--highlight-pressed);
+    }
+
+    &.focused {
+      background-color: var(--highlight-background);
+      color: var(--highlight-foreground);
+    }
+  }
+}
+
+@media (min-width: 768px) {
+  .folder-contents {
+    #content {
+      padding-right: 2rem;
+      padding-left: 2rem;
+    }
+
+    .topbar {
+      flex-wrap: nowrap;
+    }
+
+    .drag-column-header,
+    .drag-cell {
+      display: table-cell;
     }
   }
 }
