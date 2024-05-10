@@ -1,5 +1,12 @@
 
 
+## [0.4.2](https://github.com/collective/volto-contents-next/compare/v0.4.1...v0.4.2) (2024-05-10)
+
+
+### Bug Fixes
+
+* wrong case in import ([d9ecc0b](https://github.com/collective/volto-contents-next/commit/d9ecc0b40289ef4eba819ede4bbe7b6d0071acc4))
+
 ## [0.4.1](https://github.com/collective/volto-contents-next/compare/v0.4.0...v0.4.1) (2024-05-10)
 
 
