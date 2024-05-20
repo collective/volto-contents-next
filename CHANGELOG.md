@@ -1,5 +1,12 @@
 
 
+## [0.4.3](https://github.com/collective/volto-contents-next/compare/v0.4.2...v0.4.3) (2024-05-20)
+
+
+### Bug Fixes
+
+* styles ([a0f7dd4](https://github.com/collective/volto-contents-next/commit/a0f7dd41d80aac52d0395cc36b5edec90a979ecc))
+
 ## [0.4.2](https://github.com/collective/volto-contents-next/compare/v0.4.1...v0.4.2) (2024-05-10)
 
 
