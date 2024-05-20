@@ -9,12 +9,18 @@
     display: flex;
     flex-flow: row wrap;
     align-items: center;
-    margin-bottom: 1.5rem;
+    padding: 0.5rem 0 1rem;
+    margin-bottom: 0.5rem;
+    background-color: var(--background-color);
     gap: 1rem;
   }
 
   .react-aria-Breadcrumbs .react-aria-Link {
     font-size: 0.89rem;
+
+    &[data-disabled] {
+      text-decoration: none;
+    }
   }
 
   .contents-table {
@@ -171,9 +177,11 @@ body.view-contentsview {
 
     &.delete {
       --link-color: var(--quanta-candy);
+      --link-color-secondary: var(--quanta-wine);
     }
 
     .icon {
+      flex-shrink: 0;
       margin-inline-end: 1rem;
     }
 
@@ -183,6 +191,7 @@ body.view-contentsview {
       padding: 0;
       border: 0;
       background: 0 none;
+      font-family: inherit;
       text-align: left;
     }
   }
@@ -218,7 +227,7 @@ body.view-contentsview {
   }
 }
 
-@media (min-width: 768px) {
+@media (min-width: 992px) {
   .folder-contents {
     #content {
       padding-right: 2rem;
@@ -226,6 +235,9 @@ body.view-contentsview {
     }
 
     .topbar {
+      position: sticky;
+      z-index: 1;
+      top: 0;
       flex-wrap: nowrap;
     }
 
