@@ -1,5 +1,17 @@
 
 
+## [0.4.4](https://github.com/collective/volto-contents-next/compare/v0.4.3...v0.4.4) (2024-06-05)
+
+
+### Bug Fixes
+
+* use createPortal for volto18 compat ([134e723](https://github.com/collective/volto-contents-next/commit/134e723f7f37ba3e36ae82167a741833d35a3e33))
+
+
+### Documentation
+
+* proper readme ([398f15c](https://github.com/collective/volto-contents-next/commit/398f15c5b1c450938885d68e521d06b360178a41))
+
 ## [0.4.3](https://github.com/collective/volto-contents-next/compare/v0.4.2...v0.4.3) (2024-05-20)
 
 

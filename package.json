@@ -1,6 +1,6 @@
 {
   "name": "@plone-collective/volto-contents-next",
-  "version": "0.4.3",
+  "version": "0.4.4",
   "description": "volto-contents-next: Volto add-on",
   "main": "src/index.js",
   "license": "MIT",
