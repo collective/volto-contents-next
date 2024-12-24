@@ -527,6 +527,7 @@ class Contents extends Component {
       this.setState(
         {
           currentPage: 0,
+          selected: [],
         },
         () =>
           this.setState({ filter: '' }, () =>
@@ -692,6 +693,7 @@ class Contents extends Component {
     this.setState(
       {
         currentPage: value,
+        selected: [],
       },
       () => this.fetchContents(),
     );
@@ -709,6 +711,7 @@ class Contents extends Component {
       {
         pageSize: value,
         currentPage: 0,
+        selected: [],
       },
       () => this.fetchContents(),
     );
@@ -772,6 +775,7 @@ class Contents extends Component {
     this.setState({
       sort_on: values[0],
       sort_order: values[1],
+      selected: [],
     });
     this.props.sortContent(
       getBaseUrl(this.props.pathname),
@@ -799,6 +803,7 @@ class Contents extends Component {
         this.setState(
           {
             currentPage: 0,
+            selected: [],
           },
           () => this.fetchContents(),
         );
@@ -824,6 +829,7 @@ class Contents extends Component {
         this.setState(
           {
             currentPage: 0,
+            selected: [],
           },
           () => this.fetchContents(),
         );
