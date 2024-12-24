@@ -22,7 +22,7 @@ import {
   QuantaTextField,
   Tooltip,
 } from '@plone/components';
-import { Toast } from '@plone/volto/components';
+import Toast from '@plone/volto/components/manage/Toast/Toast';
 import type { Toast as ToastType } from 'react-toastify';
 import { Button } from '../Button';
 import { Table } from '../Table/Table';
