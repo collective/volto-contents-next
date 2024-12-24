@@ -1,5 +1,12 @@
 
 
+## [0.4.5](https://github.com/collective/volto-contents-next/compare/v0.4.4...v0.4.5) (2024-12-24)
+
+
+### Bug Fixes
+
+* porting of pr https://github.com/plone/volto/pull/6554 ([64d533e](https://github.com/collective/volto-contents-next/commit/64d533e9a44bfd51f0d9712165b0c277b00e1551))
+
 ## [0.4.4](https://github.com/collective/volto-contents-next/compare/v0.4.3...v0.4.4) (2024-06-05)
 
 
