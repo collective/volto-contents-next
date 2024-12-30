@@ -5,7 +5,6 @@ import {
   useTableOptions,
   Collection,
 } from 'react-aria-components';
-
 import { Checkbox } from '@plone/components';
 import { Column } from './Column';
 
