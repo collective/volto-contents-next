@@ -1,5 +1,12 @@
 
 
+## [0.5.0](https://github.com/collective/volto-contents-next/compare/v0.4.5...v0.5.0) (2024-12-30)
+
+
+### Features
+
+* updated folder content to have new linkintegrity check ([#1](https://github.com/collective/volto-contents-next/issues/1)) ([ce2c0f7](https://github.com/collective/volto-contents-next/commit/ce2c0f76f94a65ed975c9f35ee13f867599bc295))
+
 ## [0.4.5](https://github.com/collective/volto-contents-next/compare/v0.4.4...v0.4.5) (2024-12-24)
 
 
