@@ -7,7 +7,6 @@ import {
   TableBody,
   Cell,
 } from 'react-aria-components';
-import { Checkbox } from '@plone/components';
 import { TableHeader } from './TableHeader';
 import { Column } from './Column';
 import { Row } from './Row';
