@@ -32,7 +32,6 @@ export function TableHeader<T extends object>({
         <Column>
           {selectionMode === 'multiple' && (
             <>
-              ciao
               <Checkbox slot="selection" />
             </>
           )}
