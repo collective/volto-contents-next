@@ -30,10 +30,8 @@ export function TableHeader<T extends object>({
       )}
       {selectionBehavior === 'toggle' && (
         <Column>
-          {selectionMode === 'multiple' && (
-            <>
-              <Checkbox slot="selection" />
-            </>
+          {selectionMode === 'multiple' && (          
+            <Checkbox slot="selection" />            
           )}
         </Column>
       )}
