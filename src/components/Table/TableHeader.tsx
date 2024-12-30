@@ -5,7 +5,8 @@ import {
   useTableOptions,
   Collection,
 } from 'react-aria-components';
-import { Checkbox } from '@plone/components';
+//import { Checkbox } from '@plone/components';
+import { Checkbox } from '../Checkbox';
 import { Column } from './Column';
 
 interface Props<T extends object> extends TableHeaderProps<T> {

@@ -7,8 +7,8 @@ import {
   useTableOptions,
   Button,
 } from 'react-aria-components';
-import { Checkbox, DraggableIcon } from '@plone/components';
-
+import { DraggableIcon } from '@plone/components';
+import { Checkbox } from '../Checkbox';
 export function Row<T extends object>({
   id,
   columns,
