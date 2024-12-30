@@ -1124,155 +1124,163 @@ class Contents extends Component {
         {folderContentsAction ? (
           <>
             <Dimmer.Dimmable as="div" blurring dimmed={loading}>
-              <Dimmer active={loading} inverted>
-                <Loader indeterminate size="massive">
-                  {this.props.intl.formatMessage(messages.loading)}
-                </Loader>
-              </Dimmer>
-              <Helmet
-                title={this.props.intl.formatMessage(messages.contents)}
-              />
-              <RouterProvider navigate={this.props.history.push}>
-                <ContentsTable
-                  pathname={getBaseUrl(this.props.pathname)}
-                  breadcrumbs={this.props.breadcrumbs.map((b) => ({
-                    '@id': `${b.url}/contents`,
-                    title: b.title,
-                  }))}
-                  objectActions={this.props.objectActions}
-                  title={this.props.title}
-                  loading={loading}
-                  canPaste={!!this.props.action}
-                  textFilter={this.state.filter}
-                  onChangeTextFilter={(value) => {
-                    this.onChangeFilter(undefined, { value });
-                  }}
-                  items={this.state.items}
-                  selected={new Set(this.state.selected)}
-                  setSelected={(selected) => {
-                    if (selected === 'all') {
-                      this.onSelectAll();
-                    } else {
-                      this.setState({ selected: [...selected] });
-                    }
-                  }}
-                  indexes={this.state.index}
-                  onSelectIndex={(index) => {
-                    this.onSelectIndex(undefined, { value: index });
-                  }}
-                  sortItems={(id) => this.onSortItems(undefined, { value: id })}
-                  upload={this.upload}
-                  rename={this.rename}
-                  workflow={this.workflow}
-                  tags={this.tags}
-                  properties={this.properties}
-                  cut={(id) =>
-                    Promise.resolve(this.cut(undefined, { value: id }))
-                  }
-                  copy={(id) =>
-                    Promise.resolve(this.copy(undefined, { value: id }))
-                  }
-                  paste={this.paste}
-                  deleteItem={(id) =>
-                    Promise.resolve(this.delete(undefined, { value: id }))
-                  }
-                  orderItem={(id, delta) =>
-                    Promise.resolve(
-                      this.onOrderItem(id, undefined, delta, true),
-                    )
-                  }
-                  moveToTop={(index) =>
-                    Promise.resolve(
-                      this.onMoveToTop(undefined, { value: index }),
-                    )
-                  }
-                  moveToBottom={(index) =>
-                    Promise.resolve(
-                      this.onMoveToBottom(undefined, { value: index }),
-                    )
-                  }
-                  toast={this.props.toastify.toast}
-                  // addableTypes={this.props.addableTypes}
+              <React.Fragment>
+                <Dimmer active={loading} inverted>
+                  <Loader indeterminate size="massive">
+                    {this.props.intl.formatMessage(messages.loading)}
+                  </Loader>
+                </Dimmer>
+
+                <Helmet
+                  title={this.props.intl.formatMessage(messages.contents)}
                 />
-              </RouterProvider>
-              <ContentsDeleteModal
-                open={this.state.showDelete}
-                onCancel={this.onDeleteCancel}
-                onOk={this.onDeleteOk}
-                items={this.state.items}
-                itemsToDelete={this.state.itemsToDelete}
-              />
-              <ContentsUploadModal
-                open={this.state.showUpload}
-                onCancel={this.onUploadCancel}
-                onOk={this.onUploadOk}
-                pathname={getBaseUrl(this.props.pathname)}
-              />
-              <ContentsRenameModal
-                open={this.state.showRename}
-                onCancel={this.onRenameCancel}
-                onOk={this.onRenameOk}
-                items={map(this.state.selected, (item) => ({
-                  url: item,
-                  title: this.getFieldById(item, 'title'),
-                  id: this.getFieldById(item, 'id'),
-                }))}
-              />
-              <ContentsTagsModal
-                open={this.state.showTags}
-                onCancel={this.onTagsCancel}
-                onOk={this.onTagsOk}
-                items={map(this.state.selected, (item) => ({
-                  url: item,
-                  subjects: this.getFieldById(item, 'Subject'),
-                }))}
-              />
-              <ContentsPropertiesModal
-                open={this.state.showProperties}
-                onCancel={this.onPropertiesCancel}
-                onOk={this.onPropertiesOk}
-                items={this.state.selected}
-              />
-              {this.state.showWorkflow && (
-                <ContentsWorkflowModal
-                  open={this.state.showWorkflow}
-                  onCancel={this.onWorkflowCancel}
-                  onOk={this.onWorkflowOk}
+                <RouterProvider navigate={this.props.history.push}>
+                  <ContentsTable
+                    pathname={getBaseUrl(this.props.pathname)}
+                    breadcrumbs={this.props.breadcrumbs.map((b) => ({
+                      '@id': `${b.url}/contents`,
+                      title: b.title,
+                    }))}
+                    objectActions={this.props.objectActions}
+                    title={this.props.title}
+                    loading={loading}
+                    canPaste={!!this.props.action}
+                    textFilter={this.state.filter}
+                    onChangeTextFilter={(value) => {
+                      this.onChangeFilter(undefined, { value });
+                    }}
+                    items={this.state.items}
+                    selected={new Set(this.state.selected)}
+                    setSelected={(selected) => {
+                      if (selected === 'all') {
+                        this.onSelectAll();
+                      } else {
+                        this.setState({ selected: [...selected] });
+                      }
+                    }}
+                    indexes={this.state.index}
+                    onSelectIndex={(index) => {
+                      this.onSelectIndex(undefined, { value: index });
+                    }}
+                    sortItems={(id) =>
+                      this.onSortItems(undefined, { value: id })
+                    }
+                    upload={this.upload}
+                    rename={this.rename}
+                    workflow={this.workflow}
+                    tags={this.tags}
+                    properties={this.properties}
+                    cut={(id) =>
+                      Promise.resolve(this.cut(undefined, { value: id }))
+                    }
+                    copy={(id) =>
+                      Promise.resolve(this.copy(undefined, { value: id }))
+                    }
+                    paste={this.paste}
+                    deleteItem={(id) =>
+                      Promise.resolve(this.delete(undefined, { value: id }))
+                    }
+                    orderItem={(id, delta) =>
+                      Promise.resolve(
+                        this.onOrderItem(id, undefined, delta, true),
+                      )
+                    }
+                    moveToTop={(index) =>
+                      Promise.resolve(
+                        this.onMoveToTop(undefined, { value: index }),
+                      )
+                    }
+                    moveToBottom={(index) =>
+                      Promise.resolve(
+                        this.onMoveToBottom(undefined, { value: index }),
+                      )
+                    }
+                    toast={this.props.toastify.toast}
+                    // addableTypes={this.props.addableTypes}
+                  />
+                </RouterProvider>
+                <ContentsDeleteModal
+                  open={this.state.showDelete}
+                  onCancel={this.onDeleteCancel}
+                  onOk={this.onDeleteOk}
+                  items={this.state.items}
+                  itemsToDelete={this.state.itemsToDelete}
+                />
+                <ContentsUploadModal
+                  open={this.state.showUpload}
+                  onCancel={this.onUploadCancel}
+                  onOk={this.onUploadOk}
+                  pathname={getBaseUrl(this.props.pathname)}
+                />
+                <ContentsRenameModal
+                  open={this.state.showRename}
+                  onCancel={this.onRenameCancel}
+                  onOk={this.onRenameOk}
+                  items={map(this.state.selected, (item) => ({
+                    url: item,
+                    title: this.getFieldById(item, 'title'),
+                    id: this.getFieldById(item, 'id'),
+                  }))}
+                />
+                <ContentsTagsModal
+                  open={this.state.showTags}
+                  onCancel={this.onTagsCancel}
+                  onOk={this.onTagsOk}
+                  items={map(this.state.selected, (item) => ({
+                    url: item,
+                    subjects: this.getFieldById(item, 'Subject'),
+                  }))}
+                />
+                <ContentsPropertiesModal
+                  open={this.state.showProperties}
+                  onCancel={this.onPropertiesCancel}
+                  onOk={this.onPropertiesOk}
                   items={this.state.selected}
                 />
-              )}
-              <div className="contents-pagination">
-                <Pagination
-                  current={this.state.currentPage}
-                  total={Math.ceil(this.props.total / this.state.pageSize)}
-                  pageSize={this.state.pageSize}
-                  pageSizes={[50, this.props.intl.formatMessage(messages.all)]}
-                  onChangePage={this.onChangePage}
-                  onChangePageSize={this.onChangePageSize}
-                />
-              </div>
-              {this.state.isClient &&
-                createPortal(
-                  <Toolbar
-                    pathname={this.props.pathname}
-                    inner={
-                      <Link
-                        to={`${path}`}
-                        aria-label={this.props.intl.formatMessage(
-                          messages.back,
-                        )}
-                      >
-                        <Icon
-                          name={backSVG}
-                          className="contents circled"
-                          size="30px"
-                          title={this.props.intl.formatMessage(messages.back)}
-                        />
-                      </Link>
-                    }
-                  />,
-                  document.getElementById('toolbar'),
+                {this.state.showWorkflow && (
+                  <ContentsWorkflowModal
+                    open={this.state.showWorkflow}
+                    onCancel={this.onWorkflowCancel}
+                    onOk={this.onWorkflowOk}
+                    items={this.state.selected}
+                  />
                 )}
+                <div className="contents-pagination">
+                  <Pagination
+                    current={this.state.currentPage}
+                    total={Math.ceil(this.props.total / this.state.pageSize)}
+                    pageSize={this.state.pageSize}
+                    pageSizes={[
+                      50,
+                      this.props.intl.formatMessage(messages.all),
+                    ]}
+                    onChangePage={this.onChangePage}
+                    onChangePageSize={this.onChangePageSize}
+                  />
+                </div>
+                {this.state.isClient &&
+                  createPortal(
+                    <Toolbar
+                      pathname={this.props.pathname}
+                      inner={
+                        <Link
+                          to={`${path}`}
+                          aria-label={this.props.intl.formatMessage(
+                            messages.back,
+                          )}
+                        >
+                          <Icon
+                            name={backSVG}
+                            className="contents circled"
+                            size="30px"
+                            title={this.props.intl.formatMessage(messages.back)}
+                          />
+                        </Link>
+                      }
+                    />,
+                    document.getElementById('toolbar'),
+                  )}
+              </React.Fragment>
             </Dimmer.Dimmable>
           </>
         ) : (

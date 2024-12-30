@@ -5,7 +5,8 @@ import {
   useTableOptions,
   Collection,
 } from 'react-aria-components';
-import { Checkbox } from '@plone/components';
+//import { Checkbox } from '@plone/components';
+import { Checkbox } from '../Checkbox';
 import { Column } from './Column';
 
 interface Props<T extends object> extends TableHeaderProps<T> {
@@ -29,7 +30,12 @@ export function TableHeader<T extends object>({
       )}
       {selectionBehavior === 'toggle' && (
         <Column>
-          {selectionMode === 'multiple' && <Checkbox slot="selection" />}
+          {selectionMode === 'multiple' && (
+            <>
+              ciao
+              <Checkbox slot="selection" />
+            </>
+          )}
         </Column>
       )}
       <Collection items={columns}>{children}</Collection>
