@@ -1,5 +1,12 @@
 
 
+## [0.5.3](https://github.com/collective/volto-contents-next/compare/v0.5.2...v0.5.3) (2026-04-30)
+
+
+### Maintenance
+
+* fixed package.json for npm release provenance ([08b083b](https://github.com/collective/volto-contents-next/commit/08b083b184eabbd7cda1254a0ac97a4b59d5dad7))
+
 ## [0.5.2](https://github.com/collective/volto-contents-next/compare/v0.5.1...v0.5.2) (2026-04-30)
 
 
