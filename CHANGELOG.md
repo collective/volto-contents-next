@@ -1,5 +1,18 @@
 
 
+## [0.5.1](https://github.com/collective/volto-contents-next/compare/v0.5.0...v0.5.1) (2026-04-30)
+
+
+### Bug Fixes
+
+* pinned @plone/components ([2633d98](https://github.com/collective/volto-contents-next/commit/2633d98951ff7885490b6cbc73ddedbfc46ef4fb))
+* popover actions when page is scrollable ([1f0743d](https://github.com/collective/volto-contents-next/commit/1f0743d46373ec967fe6c65abdeddf54f7d53c1b))
+
+
+### Documentation
+
+* updated README.md ([c5b6782](https://github.com/collective/volto-contents-next/commit/c5b67827d05a5f2d0c708fc4a7838689bab0ee61))
+
 ## [0.5.0](https://github.com/collective/volto-contents-next/compare/v0.4.5...v0.5.0) (2024-12-30)
 
 
