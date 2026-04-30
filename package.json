@@ -4,6 +4,10 @@
   "description": "volto-contents-next: Volto add-on",
   "main": "src/index.js",
   "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/collective/volto-contents-next"
+  },
   "keywords": [
     "volto-addon",
     "volto",
