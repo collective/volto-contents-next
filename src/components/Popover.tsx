@@ -23,7 +23,7 @@ export function Popover({
   ...props
 }: PopoverProps) {
   return (
-    <RACPopover {...props}>
+    <RACPopover isNonModal {...props}>
       {arrow && (
         <OverlayArrow>
           <svg width={12} height={12} viewBox="0 0 12 12">
