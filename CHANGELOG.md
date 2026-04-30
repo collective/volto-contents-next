@@ -1,5 +1,12 @@
 
 
+## [0.5.2](https://github.com/collective/volto-contents-next/compare/v0.5.1...v0.5.2) (2026-04-30)
+
+
+### Maintenance
+
+* added npm release script via github actions ([cb4692d](https://github.com/collective/volto-contents-next/commit/cb4692dff66c6361854ec44ea9e93dbbc065cdea))
+
 ## [0.5.1](https://github.com/collective/volto-contents-next/compare/v0.5.0...v0.5.1) (2026-04-30)
 
 
