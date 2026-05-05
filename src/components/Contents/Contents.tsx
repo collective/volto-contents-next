@@ -1,4 +1,4 @@
-import { ComponentProps } from 'react';
+import { ComponentProps, useState, useRef } from 'react';
 import './styles/basic/main.css';
 import './styles/quanta/main.css';
 // import type { ActionsResponse } from '@plone/types';
@@ -112,6 +112,8 @@ export function Contents({
 }: ContentsProps) {
   const intl = useIntl();
   const isMobileScreenSize = useMediaQuery('(max-width: 768px)');
+  const [isMoreColumnsOpen, setIsMoreColumnsOpen] = useState(false);
+  const triggerRefMoreColumns = useRef<HTMLButtonElement>(null);
 
   // const folderContentsActions = objectActions.find(
   //   (action) => action.id === 'folderContents',
@@ -125,11 +127,16 @@ export function Contents({
   // }
 
   // TODO "id" is a reserved key for table rows, so we cannot add the "ID" column at this time
+  const excluded_indexes = ['id'];
   const indexes = {
     ...baseIndexes,
-    order: baseIndexes.order.filter((index) => index !== 'id'),
+    order: baseIndexes.order.filter(
+      (index) => !excluded_indexes.includes(index),
+    ),
     values: Object.fromEntries(
-      Object.entries(baseIndexes.values).filter(([key]) => key !== 'id'),
+      Object.entries(baseIndexes.values).filter(
+        ([key]) => !excluded_indexes.includes(key),
+      ),
     ),
   };
 
@@ -152,7 +159,12 @@ export function Contents({
       name: !isMobileScreenSize ? (
         <DialogTrigger>
           <TooltipTrigger>
-            <Button className="react-aria-Button actions-cell-header">
+            <Button
+              className="react-aria-Button actions-cell-header"
+              aria-label={intl.formatMessage({ id: 'contentsNextMoreColumns' })}
+              onPress={() => setIsMoreColumnsOpen(true)}
+              ref={triggerRefMoreColumns}
+            >
               <MoreoptionsIcon />
             </Button>
             <Tooltip className="react-aria-Tooltip tooltip" placement="bottom">
@@ -162,6 +174,9 @@ export function Contents({
             </Tooltip>
           </TooltipTrigger>
           <TableIndexesPopover
+            triggerRef={triggerRefMoreColumns}
+            isOpen={isMoreColumnsOpen}
+            onOpenChange={setIsMoreColumnsOpen}
             indexes={indexes}
             onSelectIndex={onSelectIndex}
           />

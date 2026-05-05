@@ -11,6 +11,11 @@ msgstr ""
 "Content-Transfer-Encoding: \n"
 "Plural-Forms: \n"
 
+#. Default: "Columns"
+#: i18n
+msgid "Columns"
+msgstr "Colonne"
+
 #. Default: "Only one item can be moved at a time"
 #: i18n
 msgid "contentsMultipleItemsMovedError"
@@ -20,6 +25,11 @@ msgstr "È possibile spostare un solo elemento alla volta"
 #: i18n
 msgid "contentsNextContentsOf"
 msgstr "Contenuti di {title}"
+
+#. Default: "More columns"
+#: i18n
+msgid "contentsNextMoreColumns"
+msgstr "Altre colonne"
 
 #. Default: "More options"
 #: i18n
