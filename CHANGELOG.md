@@ -1,5 +1,12 @@
 
 
+## [0.5.4](https://github.com/collective/volto-contents-next/compare/v0.5.3...v0.5.4) (2026-05-05)
+
+
+### Bug Fixes
+
+* show / hide columns ([0b97d74](https://github.com/collective/volto-contents-next/commit/0b97d74f4b1ebe034c2832a15b5f054dc6eb2a71))
+
 ## [0.5.3](https://github.com/collective/volto-contents-next/compare/v0.5.2...v0.5.3) (2026-04-30)
 
 
