@@ -1,5 +1,12 @@
 
 
+## [0.5.5](https://github.com/collective/volto-contents-next/compare/v0.5.4...v0.5.5) (2026-05-06)
+
+
+### Bug Fixes
+
+* close popover on click outside ([f75ecda](https://github.com/collective/volto-contents-next/commit/f75ecda33f22e4484df9ab7b1c3d7be2c15926a6))
+
 ## [0.5.4](https://github.com/collective/volto-contents-next/compare/v0.5.3...v0.5.4) (2026-05-05)
 
 
