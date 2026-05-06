@@ -20,10 +20,23 @@ export function Popover({
   dialogAriaLabel,
   dialogAriaLabelledby,
   arrow,
+  isNonModal,
+  shouldCloseOnInteractOutside,
   ...props
 }: PopoverProps) {
+  const defaultCloseOnInteractOutside: RACPopoverProps['shouldCloseOnInteractOutside'] =
+    (element) => {
+      return shouldCloseOnInteractOutside
+        ? shouldCloseOnInteractOutside(element)
+        : true;
+    };
+
   return (
-    <RACPopover isNonModal {...props}>
+    <RACPopover
+      isNonModal={isNonModal ?? false}
+      shouldCloseOnInteractOutside={defaultCloseOnInteractOutside}
+      {...props}
+    >
       {arrow && (
         <OverlayArrow>
           <svg width={12} height={12} viewBox="0 0 12 12">
