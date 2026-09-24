@@ -1,5 +1,6 @@
 import { useIntl } from 'react-intl';
 import { TooltipTrigger, type Selection } from 'react-aria-components';
+import { Tooltip } from '@plone/components';
 import {
   BinIcon,
   CopyIcon,
@@ -9,9 +10,8 @@ import {
   RenameIcon,
   StateIcon,
   TagIcon,
-  Tooltip,
   UploadIcon,
-} from '@plone/components';
+} from '@plone/components/Icons';
 import { Button } from '../Button';
 
 type Props = {

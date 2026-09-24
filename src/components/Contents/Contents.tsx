@@ -15,13 +15,15 @@ import { useMediaQuery } from 'usehooks-ts';
 import {
   // AddIcon,
   Breadcrumbs,
-  CollectionIcon,
   Container,
-  MoreoptionsIcon,
-  PasteIcon,
   QuantaTextField,
   Tooltip,
 } from '@plone/components';
+import {
+  CollectionIcon,
+  MoreoptionsIcon,
+  PasteIcon,
+} from '@plone/components/Icons';
 import Toast from '@plone/volto/components/manage/Toast/Toast';
 import type { Toast as ToastType } from 'react-toastify';
 import { Button } from '../Button';

@@ -1,7 +1,7 @@
 import React from 'react';
 import { useIntl } from 'react-intl';
 import { Menu, MenuItem, SubmenuTrigger } from 'react-aria-components';
-import { ChevronrightIcon } from '@plone/components';
+import { ChevronrightIcon } from '@plone/components/Icons';
 import { Popover, type PopoverProps } from '../Popover';
 
 interface Props extends Omit<PopoverProps, 'children'> {

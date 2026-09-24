@@ -1,5 +1,6 @@
 import React from 'react';
-import { Link, ChevronrightIcon, Popover } from '@plone/components';
+import { Link, Popover } from '@plone/components';
+import { ChevronrightIcon } from '@plone/components/Icons';
 
 interface Props {
   path: string;
