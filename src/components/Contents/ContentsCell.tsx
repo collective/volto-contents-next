@@ -3,7 +3,8 @@ import { useIntl } from 'react-intl';
 import { FormattedDate, Icon } from '@plone/volto/components';
 import { getContentIcon } from '@plone/volto/helpers';
 import { Brain } from '../../types';
-import { Link, MoreoptionsIcon, PageIcon } from '@plone/components';
+import { Link } from '@plone/components';
+import { MoreoptionsIcon, PageIcon } from '@plone/components/Icons';
 import { Button } from '../Button';
 import { ItemActionsPopover } from './ItemActionsPopover';
 

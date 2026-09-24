@@ -1,9 +1,7 @@
 import React from 'react';
 import { useIntl } from 'react-intl';
+import { Link, Button, type PopoverProps } from '@plone/components';
 import {
-  Link,
-  Button,
-  type PopoverProps,
   EditIcon,
   EyeIcon,
   RowbeforeIcon,
@@ -11,7 +9,7 @@ import {
   CutIcon,
   CopyIcon,
   BinIcon,
-} from '@plone/components';
+} from '@plone/components/Icons';
 import { Popover } from '../Popover';
 
 interface Props extends Omit<PopoverProps, 'children'> {
